@@ -2,19 +2,19 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @vite('resources/css/app.css')
+</head>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+<body class="bg-blue-50">
+  <x-navbar />
+  <div class="container mx-auto min-h-screen flex flex-col justify-start items-center pt-14">
+    @if (session('success'))
+      <x-alert :message="session('success')" type="success">{{ session('success') }}</x-alert>
+    @endif
+    @yield('content')q
+  </div>
+  @vite('resources/js/app.js')
 </head>
 <body>
     <div id="app">
